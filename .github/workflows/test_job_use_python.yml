@@ -1,0 +1,13 @@
+name: Test Job Python
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+
+    - name: asdf
+    - run: python --version
