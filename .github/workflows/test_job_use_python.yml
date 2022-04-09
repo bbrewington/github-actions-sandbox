@@ -10,5 +10,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: asdf
-      run: python --version
+    - name: copy single file
+      run: python copy_aws_to_gcs.py tripdata ${{ secrets.AWS_ACCESS_KEY }} ${{ secrets.AWS_SECRET_ACCESS_KEY }} citibike_trip_history_temp --aws_file JC-202203-citibike-tripdata.csv.zip
