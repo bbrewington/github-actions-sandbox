@@ -9,5 +9,6 @@ jobs:
   test_job:
     runs-on: ubuntu-latest
 
+    steps:
     - name: asdf
       run: python --version
