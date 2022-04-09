@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
 
     - name: asdf
-    - run: python --version
+      run: python --version
