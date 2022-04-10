@@ -30,5 +30,5 @@ jobs:
         pip install --upgrade protobuf
         pip install --upgrade boto3 google-cloud-storage
 
-    - name: copy single file
-      run: python src/copy_aws_to_gcs.py tripdata ${{ secrets.AWS_ACCESS_KEY }} ${{ secrets.AWS_SECRET_ACCESS_KEY }} cse-6242-sp22-nyatl citibike_trip_history_temp --aws_file JC-202203-citibike-tripdata.csv.zip
+    - name: full load
+      run: python src/copy_aws_to_gcs.py tripdata ${{ secrets.AWS_ACCESS_KEY }} ${{ secrets.AWS_SECRET_ACCESS_KEY }} cse-6242-sp22-nyatl citibike_trip_history_temp --aws_exclude_pattern '(JC-)|(\d{4}-\d{4})'
