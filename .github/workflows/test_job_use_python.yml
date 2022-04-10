@@ -26,7 +26,6 @@ jobs:
 
     - name: Install python libraries
       run: |
-        pip uninstall protobuf python3-protobuf
         pip install --upgrade pip
         pip install --upgrade protobuf
         pip install --upgrade boto3 google-cloud-storage
