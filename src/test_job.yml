@@ -1,0 +1,30 @@
+name: Test Job
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v0'
+
+    - name: 'AWS --> GCS'
+      run: curl https://s3.amazonaws.com/tripdata/201711-citibike-tripdata.csv.zip | gsutil cp - gs://citibike_trip_history_temp/201711-citibike-tripdata.csv.zip
+    - name: 'Convert to CSV'
+      run: gsutil cat gs://citibike_trip_history_temp/201711-citibike-tripdata.csv.zip | uncompress -cf | gsutil cp - gs://citibike_trip_history_temp/201711-citibike-tripdata.csv
+    - name: 'Delete zip'
+      run: gsutil rm gs://citibike_trip_history_temp/201711-citibike-tripdata.csv.zip
