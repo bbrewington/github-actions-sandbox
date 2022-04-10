@@ -25,7 +25,7 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v0'
 
     - name: Install python libraries
-      run: pip install boto3 google-cloud-storage
+      run: pip3 install --upgrade boto3 google-cloud-storage
 
     - name: copy single file
       run: python src/copy_aws_to_gcs.py tripdata ${{ secrets.AWS_ACCESS_KEY }} ${{ secrets.AWS_SECRET_ACCESS_KEY }} cse-6242-sp22-nyatl citibike_trip_history_temp --aws_file JC-202203-citibike-tripdata.csv.zip
