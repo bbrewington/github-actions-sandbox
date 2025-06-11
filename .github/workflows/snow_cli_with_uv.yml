@@ -35,7 +35,8 @@ jobs:
           CLI_VERSION: ${{ github.event.inputs.cli_version }}
           CUSTOM_GITHUB_REF: ${{ github.event.inputs.custom_github_ref }}
       
-      - name: Test Snowflake CLI installation
-        run: |
-          uv run snow --version
-          which snow
+      - name: Print snow version
+        run: uv run snow --version
+      
+      - name: Print path of snow
+        run: which snow
