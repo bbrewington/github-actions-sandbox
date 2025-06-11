@@ -1,0 +1,34 @@
+name: Test Snowflake CLI with uv
+
+on:
+  workflow_dispatch:
+    inputs:
+      cli_version:
+        description: 'Snowflake CLI version'
+        required: false
+        default: 'latest'
+      custom_github_ref:
+        description: 'Custom GitHub ref for CLI installation'
+        required: false
+
+jobs:
+  test-snowcli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install Snowflake CLI
+        uses: snowflakedb/snowflake-cli-action@v1.5
+        with:
+          default-config-file-path: "config.toml"
+
+      - name: Test Snowflake CLI installation
+        run: |
+          snow --version
+          which snow
