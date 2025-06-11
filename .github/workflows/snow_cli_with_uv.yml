@@ -37,5 +37,5 @@ jobs:
       
       - name: Test Snowflake CLI installation
         run: |
-          snow --version
+          uv run snow --version
           which snow
