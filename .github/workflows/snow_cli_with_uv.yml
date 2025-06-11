@@ -35,8 +35,12 @@ jobs:
           CLI_VERSION: ${{ github.event.inputs.cli_version }}
           CUSTOM_GITHUB_REF: ${{ github.event.inputs.custom_github_ref }}
       
-      - name: Print snow version
+      - name: Print snow version (uv run snow...)
         run: uv run snow --version
+      - name: Print snow version (uvx run snow...)
+        run: uvx run snow --version
+      - name: Print snow version (snow...)
+        run: snow --version
       
       - name: Print path of snow
         run: which snow
