@@ -1,0 +1,45 @@
+name: Test Snowflake CLI with uv
+
+on:
+  workflow_dispatch:
+    inputs:
+      cli_version:
+        description: 'Snowflake CLI version'
+        required: false
+        default: 'latest'
+      custom_github_ref:
+        description: 'Custom GitHub ref for CLI installation'
+        required: false
+
+jobs:
+  test-snowcli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          # Optional: specify uv version
+          version: "latest"
+          # Optional: enable cache
+          enable-cache: true
+          # Optional: specify cache dependency glob
+          cache-dependency-glob: "**/*.txt"
+      
+      - name: Install Snowflake CLI
+        run: ./scripts/install-snowcli.sh
+        env:
+          CLI_VERSION: ${{ github.event.inputs.cli_version }}
+          CUSTOM_GITHUB_REF: ${{ github.event.inputs.custom_github_ref }}
+      
+      - name: Test Snowflake CLI installation
+        run: |
+          snow --version
+          which snow
