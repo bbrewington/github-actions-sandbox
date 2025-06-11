@@ -1,4 +1,4 @@
-name: Test Snowflake CLI with uv
+name: Test Snowflake CLI with pipx
 
 on:
   workflow_dispatch:
