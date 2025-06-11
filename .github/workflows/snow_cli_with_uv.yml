@@ -37,8 +37,8 @@ jobs:
       
       - name: Print snow version (uv run snow...)
         run: uv run snow --version
-      - name: Print snow version (uvx run snow...)
-        run: uvx run snow --version
+      - name: Print snow version (uvx snow...)
+        run: uvx snow --version
       - name: Print snow version (snow...)
         run: snow --version
       
