@@ -28,10 +28,6 @@ jobs:
         with:
           # Optional: specify uv version
           version: "latest"
-          # Optional: enable cache
-          enable-cache: true
-          # Optional: specify cache dependency glob
-          cache-dependency-glob: "**/*.txt"
       
       - name: Install Snowflake CLI
         run: ./scripts/install-snowcli.sh
