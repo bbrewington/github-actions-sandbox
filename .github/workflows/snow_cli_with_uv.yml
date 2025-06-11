@@ -30,7 +30,7 @@ jobs:
           version: "latest"
       
       - name: Install Snowflake CLI
-        run: ./scripts/install-snowcli.sh
+        run: bash ./scripts/install-snowcli.sh
         env:
           CLI_VERSION: ${{ github.event.inputs.cli_version }}
           CUSTOM_GITHUB_REF: ${{ github.event.inputs.custom_github_ref }}
