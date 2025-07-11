@@ -30,10 +30,4 @@ jobs:
       - name: Install GuardDog
         run: pip install guarddog
 
-      - run: guarddog pypi scan ${{ inputs.package_name }} --output-format sarif > guarddog.sarif
-
-      - name: Upload SARIF file to GitHub
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          category: guarddog-builtin
-          sarif_file: guarddog.sarif
+      - run: guarddog pypi scan ${{ inputs.package_name }}
